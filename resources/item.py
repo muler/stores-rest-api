@@ -16,26 +16,30 @@ class Item(Resource):
     )
 
     # @jwt_required()
-    def get(self, name):
-        item = ItemModel.find_by_name(name)
-        if item:
-            return item.json()
-        return {'message': 'Item not found'}, 404
+    def get(self):
+        return {"http_get": "HTTP GET verb"}, 201
+    def post(self):
+        return {"http_post": "HTTP POST verb"}, 201
+    # def get(self, name):
+    #     item = ItemModel.find_by_name(name)
+    #     if item:
+    #         return item.json()
+    #     return {'message': 'Item not found'}, 404
 
-    def post(self, name):
-        if ItemModel.find_by_name(name):
-            return {'message': "An item with name '{}' already exists.".format(name)}, 400
+    # def post(self, name):
+    #     if ItemModel.find_by_name(name):
+    #         return {'message': "An item with name '{}' already exists.".format(name)}, 400
 
-        data = Item.parser.parse_args()
+    #     data = Item.parser.parse_args()
 
-        item = ItemModel(name, **data)
+    #     item = ItemModel(name, **data)
 
-        try:
-            item.save_to_db()
-        except:
-            return {"message": "An error occurred inserting the item."}, 500
+    #     try:
+    #         item.save_to_db()
+    #     except:
+    #         return {"message": "An error occurred inserting the item."}, 500
 
-        return item.json(), 201
+    #     return item.json(), 201
 
     def delete(self, name):
         item = ItemModel.find_by_name(name)

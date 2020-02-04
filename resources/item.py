@@ -17,9 +17,9 @@ class Item(Resource):
 
     # @jwt_required()
     def get(self):
-        return {"http_get": "HTTP GET verb"}, 201
+        return {"sample": "Thanks for using Heroku cloud service"}, 201
     def post(self):
-        return {"http_post": "HTTP POST verb"}, 201
+        return {"sample": "Thanks for using Heroku cloud service"}, 201
     # def get(self, name):
     #     item = ItemModel.find_by_name(name)
     #     if item:
